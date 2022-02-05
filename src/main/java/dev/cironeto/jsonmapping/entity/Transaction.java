@@ -3,7 +3,10 @@ package dev.cironeto.jsonmapping.entity;
 import dev.cironeto.jsonmapping.enums.CreditDebitIndicator;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -12,11 +15,11 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-@Table(name = "tb_output_transaction")
-public class Transaction {
+@Builder
+@Table(name = "tb_transaction")
+public class Transaction implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String arrangementId;
     private String bookingDate;
@@ -31,23 +34,6 @@ public class Transaction {
     private String reference;
     private String typeGroup;
     private Double instructedAmount;
-
-    public Transaction(InputTransaction inputTransaction) {
-        id = inputTransaction.getEncodedKey();
-        arrangementId = inputTransaction.getParentAccountKey();
-        bookingDate = inputTransaction.getCreationDate();
-        type = inputTransaction.getType();
-        valueDate = inputTransaction.getValueDate();
-        amount = inputTransaction.getAmount();
-        currencyCode = inputTransaction.getCurrencyCode();
-        currency = inputTransaction.getCurrencyCode();
-        creditDebitIndicator = inputTransaction.getAmount() >= 0 ? CreditDebitIndicator.CREDIT : CreditDebitIndicator.DEBIT;
-        runningBalance = inputTransaction.getTotalBalance();
-        counterPartyAccountNumber = inputTransaction.getId();
-        reference = inputTransaction.getParentAccountKey();
-        typeGroup = inputTransaction.getType();
-        instructedAmount = inputTransaction.getAmount();
-    }
-
+    private String userKey;
 
 }

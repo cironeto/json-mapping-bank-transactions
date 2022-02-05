@@ -1,17 +1,23 @@
 package dev.cironeto.jsonmapping.dto;
 
-import dev.cironeto.jsonmapping.entity.InputTransaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import dev.cironeto.jsonmapping.entity.Transaction;
 import dev.cironeto.jsonmapping.enums.CreditDebitIndicator;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
-public class TransactionDto {
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class TransactionDto implements Serializable {
 
     private String id;
     private String arrangementId;
@@ -27,6 +33,27 @@ public class TransactionDto {
     private String reference;
     private String typeGroup;
     private Double instructedAmount;
+    @JsonIgnore
+    private String userKey;
+
+
+    public TransactionDto(Transaction entity) {
+        id = entity.getId();
+        arrangementId = entity.getArrangementId();
+        bookingDate = entity.getBookingDate();
+        type = entity.getType();
+        valueDate = entity.getValueDate();
+        amount = entity.getAmount();
+        currencyCode = entity.getCurrencyCode();
+        currency = entity.getCurrency();
+        creditDebitIndicator = entity.getCreditDebitIndicator();
+        runningBalance = entity.getRunningBalance();
+        counterPartyAccountNumber = entity.getCounterPartyAccountNumber();
+        reference = entity.getReference();
+        typeGroup = entity.getTypeGroup();
+        instructedAmount = entity.getInstructedAmount();
+        userKey = entity.getUserKey();
+    }
 
     public TransactionDto(InputTransaction inputTransaction) {
         id = inputTransaction.getEncodedKey();
@@ -43,5 +70,10 @@ public class TransactionDto {
         reference = inputTransaction.getParentAccountKey();
         typeGroup = inputTransaction.getType();
         instructedAmount = inputTransaction.getAmount();
+        userKey = inputTransaction.getUserKey();
     }
+
 }
+
+
+
