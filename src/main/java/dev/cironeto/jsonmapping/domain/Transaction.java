@@ -1,4 +1,4 @@
-package dev.cironeto.jsonmapping.entity;
+package dev.cironeto.jsonmapping.domain;
 
 import dev.cironeto.jsonmapping.enums.CreditDebitIndicator;
 import lombok.*;

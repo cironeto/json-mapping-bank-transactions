@@ -3,7 +3,12 @@ package dev.cironeto.jsonmapping;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.cironeto.jsonmapping.dto.TransactionDto;
 import dev.cironeto.jsonmapping.dto.InputTransaction;
+import dev.cironeto.jsonmapping.repository.AppUserRepository;
+import dev.cironeto.jsonmapping.service.AppUserService;
 import dev.cironeto.jsonmapping.service.TransactionService;
+import dev.cironeto.jsonmapping.util.AddRoleToUserFactory;
+import dev.cironeto.jsonmapping.util.AppUserFactory;
+import dev.cironeto.jsonmapping.util.RoleFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +25,11 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ConvertJsonApplication implements CommandLineRunner {
+    private final AppUserRepository appUserRepository;
     private final TransactionService transactionService;
+    private final AppUserService appUserService;
+    private final AppUserFactory appUserFactory;
+    private final RoleFactory roleFactory;
 
 
     public static void main(String[] args) {
@@ -46,5 +55,13 @@ public class ConvertJsonApplication implements CommandLineRunner {
             transactionService.save(transactionDto);
         }
 
+        roleFactory.createAndPersistRoles();
+        appUserFactory.createAndPersistUsersDto();
+
+        appUserService.addRoleToAppUSer("william", "ROLE_ADMIN");
+        appUserService.addRoleToAppUSer("david", "ROLE_ADMIN");
+        appUserService.addRoleToAppUSer("cironeto", "ROLE_ADMIN");
+
+        log.info("Users and Roles created");
     }
 }

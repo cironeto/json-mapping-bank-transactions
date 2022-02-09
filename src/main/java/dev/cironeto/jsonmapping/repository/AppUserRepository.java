@@ -1,9 +1,12 @@
 package dev.cironeto.jsonmapping.repository;
 
-import dev.cironeto.jsonmapping.domain.Transaction;
+import dev.cironeto.jsonmapping.domain.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<Transaction, String> {
+public interface AppUserRepository extends JpaRepository<AppUser, String> {
+
+    AppUser findByUsername(String username);
+
 }

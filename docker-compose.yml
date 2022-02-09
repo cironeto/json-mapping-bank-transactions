@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    container_name: mysql-json-mapping
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3308:3306"
+    volumes:
+      - spring-data-dd:/var/lib/mysql
+
+volumes:
+  spring-data-dd:

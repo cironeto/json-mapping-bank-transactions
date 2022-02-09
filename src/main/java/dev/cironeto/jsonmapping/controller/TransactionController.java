@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/transactions")
+@RequestMapping(value = "/api")
 @RequiredArgsConstructor
 public class TransactionController {
     private final TransactionService transactionService;
 
-    @GetMapping
+    @GetMapping("/transactions")
     public ResponseEntity<List<TransactionDto>> findAll() {
         return ResponseEntity.ok(transactionService.findAll());
     }

@@ -2,7 +2,7 @@ package dev.cironeto.jsonmapping.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import dev.cironeto.jsonmapping.entity.Transaction;
+import dev.cironeto.jsonmapping.domain.Transaction;
 import dev.cironeto.jsonmapping.enums.CreditDebitIndicator;
 import lombok.*;
 

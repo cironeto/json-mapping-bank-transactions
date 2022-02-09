@@ -1,9 +1,15 @@
 spring:
-  profiles:
-    active: test
   jpa:
-    open-in-view: false
-    defer-datasource-initialization: true
-  sql:
-    init:
-      mode: always
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+  datasource:
+    url: jdbc:mysql://localhost:3308/jsonmapping?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  security:
+    jwt:
+      secret: ${JWT-SECRET:f54f6af8-86ce-11ec-a8a3-0242ac120002}
+      duration: ${JWT-DURATION:86400}
+

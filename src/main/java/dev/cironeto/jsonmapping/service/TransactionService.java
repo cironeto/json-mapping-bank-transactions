@@ -1,7 +1,7 @@
 package dev.cironeto.jsonmapping.service;
 
 import dev.cironeto.jsonmapping.dto.TransactionDto;
-import dev.cironeto.jsonmapping.entity.Transaction;
+import dev.cironeto.jsonmapping.domain.Transaction;
 import dev.cironeto.jsonmapping.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
