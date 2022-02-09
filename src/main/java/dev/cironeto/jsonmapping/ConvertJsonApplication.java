@@ -25,7 +25,6 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ConvertJsonApplication implements CommandLineRunner {
-    private final AppUserRepository appUserRepository;
     private final TransactionService transactionService;
     private final AppUserService appUserService;
     private final AppUserFactory appUserFactory;
@@ -61,7 +60,6 @@ public class ConvertJsonApplication implements CommandLineRunner {
         appUserService.addRoleToAppUSer("william", "ROLE_ADMIN");
         appUserService.addRoleToAppUSer("david", "ROLE_ADMIN");
         appUserService.addRoleToAppUSer("cironeto", "ROLE_ADMIN");
-
         log.info("Users and Roles created");
     }
 }

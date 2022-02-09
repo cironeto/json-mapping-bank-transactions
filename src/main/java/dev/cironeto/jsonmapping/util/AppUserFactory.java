@@ -19,7 +19,7 @@ public class AppUserFactory {
                 .id("8a85867e6ad9e761016ada958bdf5b0f")
                 .name("William")
                 .username("william")
-                .password(passwordEncoder.encode("123"))
+                .password("123")
                 .roles(new HashSet<>())
                 .build());
 
@@ -27,7 +27,7 @@ public class AppUserFactory {
                 .id("8a8587b371776b9e01717d217e6e1492")
                 .name("David")
                 .username("david")
-                .password(passwordEncoder.encode("123"))
+                .password("123")
                 .roles(new HashSet<>())
                 .build());
 
@@ -35,7 +35,7 @@ public class AppUserFactory {
                 .id("8a8587fd6b0487a7016b07a1ecfb0b74")
                 .name("Ciro")
                 .username("cironeto")
-                .password(passwordEncoder.encode("123"))
+                .password("123")
                 .roles(new HashSet<>())
                 .build());
     }

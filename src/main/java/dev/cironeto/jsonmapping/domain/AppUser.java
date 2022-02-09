@@ -23,41 +23,11 @@ public class AppUser implements Serializable {
     @Id
     private String id;
     private String name;
+    @Column(unique = true)
     private String username;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
 
-//
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return roles.stream().map(role -> (new SimpleGrantedAuthority(role.getAuthority())))
-//                .collect(Collectors.toList());
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return email;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
 }
