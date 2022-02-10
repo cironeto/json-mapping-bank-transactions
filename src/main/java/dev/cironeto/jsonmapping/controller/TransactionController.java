@@ -1,10 +1,11 @@
 package dev.cironeto.jsonmapping.controller;
 
-import dev.cironeto.jsonmapping.dto.TransactionDto;
+import dev.cironeto.jsonmapping.domain.Transaction;
 import dev.cironeto.jsonmapping.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,8 @@ import java.util.List;
 public class TransactionController {
     private final TransactionService transactionService;
 
-    @GetMapping("/transactions")
-    public ResponseEntity<List<TransactionDto>> findAll() {
-        return ResponseEntity.ok(transactionService.findAll());
+    @GetMapping("/transactions/{id}")
+    public ResponseEntity<List<Transaction>> listTransactionByAccountId(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(transactionService.listTransactionByAccountId(id));
     }
 }

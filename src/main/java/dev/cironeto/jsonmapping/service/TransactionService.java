@@ -1,59 +1,35 @@
 package dev.cironeto.jsonmapping.service;
 
-import dev.cironeto.jsonmapping.dto.TransactionDto;
+import dev.cironeto.jsonmapping.domain.AppUser;
 import dev.cironeto.jsonmapping.domain.Transaction;
+import dev.cironeto.jsonmapping.repository.AppUserRepository;
 import dev.cironeto.jsonmapping.repository.TransactionRepository;
+import dev.cironeto.jsonmapping.service.exception.ForbiddenException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TransactionService {
     private final TransactionRepository transactionRepository;
+    private final AppUserRepository appUserRepository;
+    private final AuthService authService;
 
-    @Transactional
-    public TransactionDto save(TransactionDto dto) {
-        Transaction entity = new Transaction();
-        convertDtoToEntity(entity, dto);
-        entity = transactionRepository.save(entity);
-        return new TransactionDto(entity);
+    public List<Transaction> saveTransactions(List<Transaction> transactions) {
+        return transactionRepository.saveAll(transactions);
     }
 
-    @Transactional(readOnly = true)
-    public List<TransactionDto> findAll() {
-        List<Transaction> list = transactionRepository.findAll();
-
-        List<TransactionDto> dtoList = new ArrayList<>();
-
-        for (Transaction transaction : list) {
-            TransactionDto dto = new TransactionDto(transaction);
-            dtoList.add(dto);
+    public List<Transaction> listTransactionByAccountId(Long id) throws Exception {
+        if(!Objects.equals(authService.getAuthenticatedUser().getId(), id)){
+            throw new ForbiddenException("Access denied. Invalid user for this transaction");
         }
-        return dtoList;
+        AppUser appUser = appUserRepository.getById(id);
+        return transactionRepository.findAllByUserKey(appUser.getUserKey());
     }
 
-
-    private void convertDtoToEntity(Transaction entity, TransactionDto dto) {
-        entity.setId(dto.getId());
-        entity.setArrangementId(dto.getArrangementId());
-        entity.setBookingDate(dto.getBookingDate());
-        entity.setType(dto.getType());
-        entity.setValueDate(dto.getValueDate());
-        entity.setAmount(dto.getAmount());
-        entity.setCurrencyCode(dto.getCurrencyCode());
-        entity.setCurrency(dto.getCurrency());
-        entity.setCreditDebitIndicator(dto.getCreditDebitIndicator());
-        entity.setRunningBalance(dto.getRunningBalance());
-        entity.setCounterPartyAccountNumber(dto.getCounterPartyAccountNumber());
-        entity.setReference(dto.getReference());
-        entity.setTypeGroup(dto.getTypeGroup());
-        entity.setInstructedAmount(dto.getInstructedAmount());
-        entity.setUserKey(dto.getUserKey());
-
-
-    }
 }

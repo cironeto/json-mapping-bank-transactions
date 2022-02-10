@@ -11,6 +11,6 @@ public class RoleFactory {
     private final RoleRepository roleRepository;
 
     public void createAndPersistRoles() {
-        roleRepository.save(Role.builder().id(1L).name("ROLE_ADMIN").build());
+        roleRepository.save(Role.builder().id(1L).name("ROLE_USER").build());
     }
 }

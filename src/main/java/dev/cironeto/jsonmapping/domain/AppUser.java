@@ -21,7 +21,8 @@ public class AppUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String id;
+    private Long id;
+    private String userKey;
     private String name;
     @Column(unique = true)
     private String username;

@@ -1,4 +1,4 @@
-package dev.cironeto.jsonmapping.dto;
+package dev.cironeto.jsonmapping.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
