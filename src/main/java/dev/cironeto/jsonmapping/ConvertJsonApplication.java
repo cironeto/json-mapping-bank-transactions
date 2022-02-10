@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -52,7 +53,6 @@ public class ConvertJsonApplication implements CommandLineRunner {
 
         roleFactory.createAndPersistRoles();
         appUserFactory.createAndPersistUsersDto();
-
         appUserService.addRoleToAppUSer("william", "ROLE_USER");
         appUserService.addRoleToAppUSer("david", "ROLE_USER");
         appUserService.addRoleToAppUSer("ciro", "ROLE_USER");

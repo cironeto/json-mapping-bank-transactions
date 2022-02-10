@@ -3,7 +3,6 @@ package dev.cironeto.jsonmapping.util;
 import dev.cironeto.jsonmapping.domain.AppUser;
 import dev.cironeto.jsonmapping.service.AppUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

@@ -7,3 +7,4 @@ spring:
     url: jdbc:mysql://localhost:3308/jsonmapping?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
     username: root
     password: root
+
