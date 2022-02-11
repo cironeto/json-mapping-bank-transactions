@@ -32,7 +32,7 @@ Para execução deste projeto é necessário ter instalado:
 - Docker
 
 ## Execução
-Execute via IDE ou abra o terminal em 
+Abra o terminal em 
 '.../json-mapping-bank-transactions' 
 e execute o comando Docker para criar o servidor MySQL:
 ```sh
